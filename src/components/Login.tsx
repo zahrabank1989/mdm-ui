@@ -2,10 +2,13 @@
 import React from 'react';
 import { Button, TextField, Container, Typography, Box } from '@mui/material';
 
+// Define icon paths directly in the file
+const CustomUserIcon = './profile.svg'; // Path to profile.svg
+const CustomLockIcon = './lock.png'; // Path to lock.png
+
 const Login: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Handle login logic here
         console.log("Login submitted");
     };
 
@@ -16,22 +19,42 @@ const Login: React.FC = () => {
                     Sign In
                 </Typography>
                 <form onSubmit={handleSubmit}>
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        label="Email Address"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                    />
+                    <Box sx={{ mb: 2 }}>
+                        <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center' }}>
+                            <img
+                                src={CustomUserIcon}
+                                alt="User Icon"
+                                style={{ marginRight: '8px', width: '24px', height: '24px' }}
+                            />
+                            Username
+                        </Typography>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Username"
+                            autoComplete="username"
+                            autoFocus
+                        />
+                    </Box>
+                    <Box sx={{ mb: 2 }}>
+                        <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center' }}>
+                            <img
+                                src={CustomLockIcon}
+                                alt="Lock Icon"
+                                style={{ marginRight: '8px', width: '24px', height: '24px' }}
+                            />
+                            Password
+                        </Typography>
+                        <TextField
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Password"
+                            type="password"
+                            autoComplete="current-password"
+                        />
+                    </Box>
                     <Button
                         type="submit"
                         fullWidth
