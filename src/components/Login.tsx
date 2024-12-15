@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button, TextField, Container, Typography, Box } from '@mui/material';
 
+
 const CustomUserIcon = '/login/profile.svg'; // Path to profile.svg in public/login
 const CustomLockIcon = '/login/shield.png'; // Path to lock.png in public/login
 const FooterImage = '/login/power-grids-and-outages-2 1.svg'; // Path to your footer image
@@ -23,7 +24,14 @@ const Login: React.FC = () => {
                 justifyContent: 'center', // Center vertically
                 backgroundColor: 'rgba(233, 237, 248, 1)',
                 padding: 0,
+                margin:0,
+                width:'100vw'
+               // position: 'relative', // Ensure footer can be positioned absolutely
+
+
+
             }}
+            disableGutters
             maxWidth={false}
         >
             <Box
@@ -91,12 +99,11 @@ const Login: React.FC = () => {
             <Box
                 sx={{
                     position: 'absolute', // Position it at the bottom
-                    bottom: 20, // Adjust as necessary
+                    bottom: 0, // Adjust as necessary
                     left: 0,
                     right: 0,
                     display: 'flex',
                     justifyContent: 'center',
-                    padding: 2,
                 }}
             >
                 <img
@@ -105,8 +112,6 @@ const Login: React.FC = () => {
                     style={{ maxWidth: '100%', height: 'auto' }} // Responsive image
                 />
             </Box>
-        </Container>
-    );
+        </Container>);
 };
-
 export default Login;
