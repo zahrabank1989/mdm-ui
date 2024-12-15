@@ -4,6 +4,7 @@ import { Button, TextField, Container, Typography, Box } from '@mui/material';
 
 const CustomUserIcon = '/login/profile.svg'; // Path to profile.svg in public/login
 const CustomLockIcon = '/login/shield.png'; // Path to lock.png in public/login
+const FooterImage = '/login/power-grids-and-outages-2 1.svg'; // Path to your footer image
 
 const Login: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -12,8 +13,29 @@ const Login: React.FC = () => {
     };
 
     return (
-        <Container component="main" maxWidth="xs" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100vh', backgroundImage: 'url(/path/to/your/background-image.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <Box sx={{ mt: 8, backgroundColor: 'rgba(255, 255, 255, 0.8)', borderRadius: 2, padding: 3, boxShadow: 3 }}>
+        <Container
+            component="main"
+            sx={{
+                height: '100vh', // Full viewport height
+                display: 'flex',
+                flexDirection: 'column', // Stack children vertically
+                alignItems: 'center', // Center horizontally
+                justifyContent: 'center', // Center vertically
+                backgroundColor: 'rgba(233, 237, 248, 1)',
+                padding: 0,
+            }}
+            maxWidth={false}
+        >
+            <Box
+                sx={{
+                    backgroundColor: 'rgba(245, 248, 255, 1)',
+                    borderRadius: 2,
+                    padding: 3,
+                    width: '100%', // Fill width of the container
+                    maxWidth: '400px', // Max width for the inner Box
+                    boxShadow: 1, // Optional: Add shadow for better visibility
+                }}
+            >
                 <Typography component="h1" variant="h5" align="center">
                     Sign In
                 </Typography>
@@ -64,9 +86,25 @@ const Login: React.FC = () => {
                     </Button>
                 </form>
             </Box>
-     //   <Box>
-//i dont want backgroundImage,  i just want to have an image in the footer part of main Container
-    //    </Box>
+
+            {/* Footer Image */}
+            <Box
+                sx={{
+                    position: 'absolute', // Position it at the bottom
+                    bottom: 20, // Adjust as necessary
+                    left: 0,
+                    right: 0,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    padding: 2,
+                }}
+            >
+                <img
+                    src={FooterImage}
+                    alt="Footer"
+                    style={{ maxWidth: '100%', height: 'auto' }} // Responsive image
+                />
+            </Box>
         </Container>
     );
 };
