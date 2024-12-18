@@ -25,7 +25,7 @@ const Login: React.FC = () => {
                 backgroundColor: 'rgba(233, 237, 248, 1)',
                 padding: 0,
                 margin:0,
-                width:'100vw'
+               // width:'100vw'
                // position: 'relative', // Ensure footer can be positioned absolutely
 
 
