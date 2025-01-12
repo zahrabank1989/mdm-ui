@@ -1,16 +1,43 @@
-import React from 'react';
+// Login.tsx
+import React, { useRef, useState, useEffect } from 'react';
 import { Button, TextField, Container, Typography, Box } from '@mui/material';
+import dynamic from 'next/dynamic';
 
-const CustomUserIcon = '/login/profile.svg'; // Path to profile.svg in public/login
-const CustomLockIcon = '/login/shield.png'; // Path to lock.png in public/login
-const FooterImageLg = '/login/power-grids-and-outages-2 1.svg'; // Path to your footer image
-const FooterImageMd = '/login/power-grids-and-outages-md.svg'; // Path to your footer image
-const FooterImageSm = '/login/power-grids-and-outages-sm.svg'; // Path to your footer image
+const CustomUserIcon = '/login/profile.svg';
+const CustomLockIcon = '/login/shield.png';
+const FooterImageLg = '/login/power-grids-and-outages-2 1.svg';
+const FooterImageMd = '/login/power-grids-and-outages-md.svg';
+const FooterImageSm = '/login/power-grids-and-outages-sm.svg';
+
+const Captcha = dynamic(() => import('reactjs-captcha').then(mod => mod.Captcha), { ssr: false });
 
 const Login: React.FC = () => {
+    const [userInput, setUserInput] = useState<string>('');
+    //const [captchaReady, setCaptchaReady] = useState<boolean>(false);
+    const captchaRef = useRef<any>(null);
+/*
+    useEffect(() => {
+        // Check if the CAPTCHA is ready
+        if (captchaRef.current) {
+            setCaptchaReady(true);
+        }
+    }, [captchaRef.current]);
+*/
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log("Login submitted");
+
+        if (!captchaRef.current) {
+            alert('CAPTCHA is not ready. Please reload the page.');
+            return;
+        }
+
+        const captchaValue = captchaRef.current.getValue();
+        if (userInput === captchaValue) {
+            console.log("Login submitted");
+            // Handle successful login logic here
+        } else {
+            alert('Invalid CAPTCHA. Please try again.');
+        }
     };
 
     return (
@@ -18,15 +45,12 @@ const Login: React.FC = () => {
             component="main"
             sx={{
                 display: 'flex',
-                flexDirection: 'column', // Stack children vertically
-                alignItems: 'center', // Center horizontally
-                //justifyContent: 'center', // Center vertically
-                justifyContent: 'space-between', // Space between the boxes
-
+                flexDirection: 'column',
+                justifyContent: 'space-between',
                 backgroundColor: 'rgba(233, 237, 248, 1)',
                 padding: 0,
                 margin: 0,
-                height: '100vh', // Full height of the viewport
+                height: '100vh',
             }}
             disableGutters
             maxWidth={false}
@@ -37,23 +61,19 @@ const Login: React.FC = () => {
                     borderRadius: 2,
                     padding: 3,
                     width: {
-                        xs: '90%',  // 90% width on extra small screens
-                        sm: '80%',   // 80% width on small screens
-                        md: '60%',   // 60% width on medium screens
-                        lg: '40%',   // 40% width on large screens
+                        xs: '90%',
+                        sm: '80%',
+                        md: '60%',
+                        lg: '40%',
                     },
-                    maxWidth: '400px', // Optional: Set a maximum width for larger screens
-                    boxShadow: 1, // Optional: Add shadow for better visibility
-                    mt:2,
-                    //display: 'flex',
-                    //flexDirection: 'column', // Stack form elements vertically
+                    maxWidth: '400px',
+                    boxShadow: 1,
+                    mt: 2,
                 }}
             >
-
                 <Typography component="h1" variant="h5" align="center">
                     Sign In
                 </Typography>
-
                 <form onSubmit={handleSubmit} style={{ flexGrow: 1 }}>
                     <Box sx={{ mb: 2 }}>
                         <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center' }}>
@@ -91,6 +111,24 @@ const Login: React.FC = () => {
                             placeholder="****"
                         />
                     </Box>
+                    {/* Captcha Challenge */}
+                    <Box sx={{ mb: 2 }}>
+                        <Captcha
+                            captchaStyleName="yourFirstCaptchaStyle"
+                            ref={captchaRef}
+                        />
+                        <label>
+                            <span>Retype the characters from the picture:</span>
+                            <input
+                                id="yourFirstCaptchaUserInput"
+                                type="text"
+                                value={userInput}
+                                onChange={(e) => setUserInput(e.target.value)}
+                                style={{ width: '100%', marginTop: '8px' }}
+                                required
+                            />
+                        </label>
+                    </Box>
                     <Button
                         type="submit"
                         fullWidth
@@ -102,32 +140,20 @@ const Login: React.FC = () => {
                 </form>
             </Box>
             {/* Footer Image */}
-            <Box
-                sx={{
-                   // backgroundColor: 'rgba(233, 237, 248, 1)',
-                  //  position: 'absolute', // Position it at the bottom
-                  //  bottom: 0, // Adjust as necessary
-                  //  left: 0,
-                  //  right: 0,
-                  //  display: 'flex',
-                   // justifyContent: 'center',
-                    //mt: 20, // Adjust margin-top as necessary
-                   // alignSelf: 'flex-end'
-                }}
-            >
+            <Box>
                 <picture>
-                    <source media="(max-width: 600px)" srcSet={FooterImageSm}/>
-                    <source media="(max-width: 960px)" srcSet={FooterImageMd}/>
-                    <source media="(max-width: 1500px)" srcSet={FooterImageLg}/>
-
+                    <source media="(max-width: 600px)" srcSet={FooterImageSm} />
+                    <source media="(max-width: 960px)" srcSet={FooterImageMd} />
+                    <source media="(max-width: 1500px)" srcSet={FooterImageLg} />
                     <img
                         src={FooterImageLg}
                         alt="Footer"
-                        style={{maxWidth: '100%', height: 'auto'}} // Responsive image
+                        style={{ maxWidth: '100%', height: 'auto' }}
                     />
                 </picture>
             </Box>
         </Container>
     );
 };
+
 export default Login;
