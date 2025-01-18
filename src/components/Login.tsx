@@ -116,6 +116,8 @@ const Login: React.FC = () => {
                         <Captcha
                             captchaStyleName="yourFirstCaptchaStyle"
                             ref={captchaRef}
+                            captchaEndpoint="https://192.168.171.40:1022/simple-captcha-endpoint.ashx" // Set your backend endpoint here
+
                         />
                         <label>
                             <span>Retype the characters from the picture:</span>
