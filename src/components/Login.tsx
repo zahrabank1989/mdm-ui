@@ -12,32 +12,11 @@ const FooterImageSm = '/login/power-grids-and-outages-sm.svg';
 const Captcha = dynamic(() => import('reactjs-captcha').then(mod => mod.Captcha), { ssr: false });
 
 const Login: React.FC = () => {
-    const [userInput, setUserInput] = useState<string>('');
-    //const [captchaReady, setCaptchaReady] = useState<boolean>(false);
-    const captchaRef = useRef<any>(null);
-/*
-    useEffect(() => {
-        // Check if the CAPTCHA is ready
-        if (captchaRef.current) {
-            setCaptchaReady(true);
-        }
-    }, [captchaRef.current]);
-*/
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (!captchaRef.current) {
-            alert('CAPTCHA is not ready. Please reload the page.');
-            return;
-        }
 
-        const captchaValue = captchaRef.current.getValue();
-        if (userInput === captchaValue) {
-            console.log("Login submitted");
-            // Handle successful login logic here
-        } else {
-            alert('Invalid CAPTCHA. Please try again.');
-        }
     };
 
     return (
@@ -111,26 +90,7 @@ const Login: React.FC = () => {
                             placeholder="****"
                         />
                     </Box>
-                    {/* Captcha Challenge */}
-                    <Box sx={{ mb: 2 }}>
-                        <Captcha
-                            captchaStyleName="yourFirstCaptchaStyle"
-                            ref={captchaRef}
-                            captchaEndpoint="https://192.168.171.40:1022/simple-captcha-endpoint.ashx" // Set your backend endpoint here
 
-                        />
-                        <label>
-                            <span>Retype the characters from the picture:</span>
-                            <input
-                                id="yourFirstCaptchaUserInput"
-                                type="text"
-                                value={userInput}
-                                onChange={(e) => setUserInput(e.target.value)}
-                                style={{ width: '100%', marginTop: '8px' }}
-                                required
-                            />
-                        </label>
-                    </Box>
                     <Button
                         type="submit"
                         fullWidth
