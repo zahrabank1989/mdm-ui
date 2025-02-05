@@ -3,10 +3,7 @@ import {Container, Typography, Box} from '@mui/material';
 import IconBox from './IconBox'; // Import your IconBox component
 import LoginForm from './LoginForm'; // Import the LoginForm component
 import Footer from './Footer'; // Import the Footer component
-
-
-
-
+import { useTranslation } from 'react-i18next';
 
 const containerStyle = {
     display: 'flex',
@@ -34,6 +31,7 @@ const boxStyle = {
 };
 
 const Login: React.FC = () => {
+    const {t} = useTranslation();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Add logic to handle form submission
@@ -47,7 +45,7 @@ const Login: React.FC = () => {
         >
             <Box sx={boxStyle}>
                 <Typography component="h1" variant="h5" align="center">
-                    Sign In
+                    {t('farab')}
                 </Typography>
                 <LoginForm
                     textFieldStyle={{
@@ -58,8 +56,6 @@ const Login: React.FC = () => {
                 />
                 <IconBox
                     sx={{mt: 3}}
-                    // leftBoxStyle={{backgroundColor: 'red'}} // Optional: Custom styles for left box
-                    // rightBoxStyle={{backgroundColor: 'blue'}} // Optional: Custom styles for right box
                 />
             </Box>
             <Footer/>

@@ -2,12 +2,19 @@ import React from 'react';
 import {Typography, Box} from '@mui/material';
 import CenteredImageBox from './CenteredImageBox'; // Import the CenteredImageBox component
 import CustomBox from   "./CustomBox";
+import { useTranslation } from 'react-i18next';
 
 const IconBox = ({
                      leftBoxStyle = {},
                      rightBoxStyle = {},
                      sx,
                  }) => {
+
+    const {i18n, t} = useTranslation();
+    const changeLanguage = () => {
+        i18n.changeLanguage(i18n.language === "en" ? "fa" : "en"); // Toggle between languages
+    };
+
     const EllipseImage = '/login/Ellipse.svg';
     const GoogleImage = '/login/google.svg';
     const CallImage = '/login/call-calling.svg';
@@ -71,8 +78,10 @@ const IconBox = ({
             >
                 <CustomBox
                     imageSrc={GlobalImage}
-                    text="FA"
-                    iconSize={24}/>
+                    text={t('lan')}
+                    iconSize={24}
+                    onClick={changeLanguage} // Pass event handler
+                />
             </Box>
             {/* Right Box */}
             <Box

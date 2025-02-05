@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import apiService from '../services/apiService'; // Adjust the path as necessary
+import { useTranslation } from 'react-i18next';
+
 const LoginForm = ({
                        textFieldStyle, // Style props for TextField
 
                    }) => {
+    const {t} = useTranslation();
     const UserIcon = '/login/profile.svg';
     const LockIcon = '/login/shield.svg';
     const [username, setUsername] = useState('');
@@ -38,7 +41,7 @@ const LoginForm = ({
                         alt="User Icon"
                         style={{ marginRight: '8px' }}
                     />
-                    Username
+                    {t('username')}
                 </Typography>
                 <TextField
                     {...textFieldStyle}
@@ -61,7 +64,7 @@ const LoginForm = ({
                         alt="Lock Icon"
                         style={{ marginRight: '8px' }}
                     />
-                    Password
+                    {t('password')}
                 </Typography>
                 <TextField
                     {...textFieldStyle}

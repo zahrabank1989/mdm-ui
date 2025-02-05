@@ -1,37 +1,48 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
+import React from "react";
+import { Box, Typography } from "@mui/material";
 
-const CustomBox = ({ imageSrc, text ,iconSize}) => {
+interface CustomBoxProps {
+    imageSrc: string;
+    text: string;
+    iconSize: number;
+    onClick?: () => void; // Optional onClick prop
+}
 
+const CustomBox: React.FC<CustomBoxProps> = ({ imageSrc, text, iconSize, onClick }) => {
     return (
         <Box
+            onClick={onClick}
             sx={{
-                backgroundColor: '#E9EDF8',
-                backgroundSize: 'cover', // Adjust the size to cover the box
-                backgroundPosition: 'center', // Center the background image
-                width: '60px', // Box width
-                height: '40px', // Box height
-                borderRadius: '4px', // Add the border radius
-                display: 'flex', // Flexbox for centering content
-                alignItems: 'center', // Vertically center
-                justifyContent: 'center', // Horizontally center
+                backgroundColor: "#E9EDF8",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                width: "60px",
+                height: "40px",
+                borderRadius: "4px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer", // Better UX
             }}
         >
             <img
-                src={imageSrc} // Dynamically set the icon image
+                src={imageSrc}
                 alt="Icon"
                 style={{
-                    width: `${iconSize}px`, // Adjust the icon width
-                    marginRight: '8px', // Add space between the image and the text
+                    width: `${iconSize}px`,
+                    marginRight: "8px",
                 }}
             />
-            <Typography variant="h6" component="div"
-                        sx={{
-                            color: '#318CC1', // Set the color
-                            fontWeight: 400,
-                            fontSize: '1rem',
-                            lineHeight: '1.5rem',
-                        }}>
+            <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                    color: "#318CC1",
+                    fontWeight: 400,
+                    fontSize: "1rem",
+                    lineHeight: "1.5rem",
+                }}
+            >
                 {text}
             </Typography>
         </Box>
