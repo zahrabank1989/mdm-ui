@@ -50,6 +50,5 @@ const logout = (): void => {
 
 export default {
     login,
-    getUserProfile,
     logout,
 };
