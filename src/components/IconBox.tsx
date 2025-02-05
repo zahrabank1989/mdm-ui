@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import {Typography, Box} from '@mui/material';
 import CenteredImageBox from './CenteredImageBox'; // Import the CenteredImageBox component
+import CustomBox from   "./CustomBox";
 
 const IconBox = ({
                      leftBoxStyle = {},
@@ -13,46 +14,43 @@ const IconBox = ({
     const MessagesImage = '/login/messages.svg';
     const DocImage = '/login/document-text.svg';
     const GlobalImage = '/login/global.svg';
-
     const leftIcon = {
         backgroundImage: EllipseImage,
         iconImage: GlobalImage,
         boxSize: 47,
         iconSize: 24,
-        sx:{}
+        sx: {}
     };
-
     const rightIcons = [
         {
             backgroundImage: EllipseImage,
             iconImage: DocImage,
             boxSize: 47,
             iconSize: 24,
-            sx:{}
+            sx: {}
         },
         {
             backgroundImage: EllipseImage,
             iconImage: MessagesImage,
             boxSize: 47,
             iconSize: 24,
-            sx:{}
+            sx: {}
         },
         {
             backgroundImage: EllipseImage,
             iconImage: CallImage,
             boxSize: 47,
             iconSize: 24,
-            sx:{}
+            sx: {}
         },
         {
             backgroundImage: EllipseImage,
             iconImage: GoogleImage,
             boxSize: 47,
             iconSize: 24,
-            sx:{}
+            sx: {}
         },
     ];
-
     return (
         <Box
             sx={{
@@ -71,7 +69,10 @@ const IconBox = ({
                     ...leftBoxStyle, // Override or extend styles via props
                 }}
             >
-                <CenteredImageBox {...leftIcon} />
+                <CustomBox
+                    imageSrc={GlobalImage}
+                    text="FA"
+                    iconSize={24}/>
             </Box>
             {/* Right Box */}
             <Box
@@ -86,12 +87,11 @@ const IconBox = ({
                     <CenteredImageBox
                         key={index}
                         {...icon}
-                        sx={{ mr: index < rightIcons.length - 1 ? 1 : 0, ...icon.sx }}
+                        sx={{mr: index < rightIcons.length - 1 ? 1 : 0, ...icon.sx}}
                     />
                 ))}
             </Box>
         </Box>
     );
 };
-
 export default IconBox;

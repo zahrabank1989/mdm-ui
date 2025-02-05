@@ -50,7 +50,6 @@ const Login: React.FC = () => {
                     Sign In
                 </Typography>
                 <LoginForm
-                    handleSubmit={handleSubmit}
                     textFieldStyle={{
                         margin: 'normal',
                         required: true,
