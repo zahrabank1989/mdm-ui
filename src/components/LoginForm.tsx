@@ -7,12 +7,14 @@ const LoginForm = ({
                        textFieldStyle, // Style props for TextField
 
                    }) => {
-    const {t} = useTranslation();
+
     const UserIcon = '/login/profile.svg';
     const LockIcon = '/login/shield.svg';
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { i18n, t } = useTranslation();
+    const isEnglish = i18n.language === "en"; // Check current language
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
@@ -35,11 +37,13 @@ const LoginForm = ({
         <form onSubmit={handleSubmit}>
             {/* Username Field */}
             <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center' }}>
+                <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center' , justifyContent: isEnglish ? "flex-start" : "flex-end",gap: '8px'}}>
                     <img
                         src={UserIcon}
                         alt="User Icon"
-                        style={{ marginRight: '8px' }}
+                        style={{
+                            order: isEnglish ? 0 : 1, // Icon order
+                        }}
                     />
                     {t('username')}
                 </Typography>
@@ -58,11 +62,13 @@ const LoginForm = ({
 
             {/* Password Field */}
             <Box sx={{ mb: 2 }}>
-                <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center' }}>
+                <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center' ,justifyContent: isEnglish ? "flex-start" : "flex-end",gap: '8px'}}>
                     <img
                         src={LockIcon}
                         alt="Lock Icon"
-                        style={{ marginRight: '8px' }}
+                        style={{
+                            order: isEnglish ? 0 : 1, // Icon order
+                        }}
                     />
                     {t('password')}
                 </Typography>
@@ -91,7 +97,7 @@ const LoginForm = ({
                     width: '50%',
                 }}
             >
-                Sign In
+                {t('sign_in')}
             </Button>
         </form>
     );

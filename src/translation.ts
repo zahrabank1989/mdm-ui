@@ -10,7 +10,8 @@ i18n
                     username: "Username",
                     password: "Password",
                     farab: "ّFarab",
-                    lan:"FA"
+                    lan:"FA",
+                    sign_in:"Sign in"
                 },
             },
             fa: {
@@ -18,7 +19,8 @@ i18n
                     username: "نام کاربری",
                     password: "رمز عبور",
                     farab: "فراب",
-                    lan:"EN"
+                    lan:"EN",
+                    sign_in:"ورود به سامانه"
                 },
             },
         },

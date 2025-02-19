@@ -28,10 +28,15 @@ const boxStyle = {
     maxWidth: '400px',
     boxShadow: 1,
     mt: 2,
+    display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'
 };
 
 const Login: React.FC = () => {
-    const {t} = useTranslation();
+    const FarabLogoEn = '/login/farab_logo_en.svg';
+    const FarabLogoFa = '/login/farab_logo_fa.svg';
+    const { i18n, t } = useTranslation();
+    const isEnglish = i18n.language === "en"; // Check current language
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         // Add logic to handle form submission
@@ -44,9 +49,10 @@ const Login: React.FC = () => {
             maxWidth={false}
         >
             <Box sx={boxStyle}>
-                <Typography component="h1" variant="h5" align="center">
-                    {t('farab')}
-                </Typography>
+                <img
+                    src={isEnglish ? FarabLogoEn : FarabLogoFa}
+                    alt="Farab Icon"
+                />
                 <LoginForm
                     textFieldStyle={{
                         margin: 'normal',
