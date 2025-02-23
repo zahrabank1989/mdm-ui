@@ -52,6 +52,7 @@ const Login: React.FC = () => {
                 <img
                     src={isEnglish ? FarabLogoEn : FarabLogoFa}
                     alt="Farab Icon"
+                    style={{ height: '84px', width: 'auto' }} // Fixed height, auto width
                 />
                 <LoginForm
                     textFieldStyle={{
