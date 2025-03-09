@@ -1,10 +1,10 @@
 import React from 'react';
 import {Typography, Box} from '@mui/material';
 import CenteredImageBox from './CenteredImageBox'; // Import the CenteredImageBox component
-import CustomBox from   "./CustomBox";
+import IconLableBox from   "./IconLableBox";
 import { useTranslation } from 'react-i18next';
 
-const IconBox = ({
+const IconsRow = ({
                      leftBoxStyle = {},
                      rightBoxStyle = {},
                      sx,
@@ -76,7 +76,7 @@ const IconBox = ({
                     ...leftBoxStyle, // Override or extend styles via props
                 }}
             >
-                <CustomBox
+                <IconLableBox
                     imageSrc={GlobalImage}
                     text={t('lan')}
                     iconSize={24}
@@ -103,4 +103,4 @@ const IconBox = ({
         </Box>
     );
 };
-export default IconBox;
+export default IconsRow;

@@ -1,14 +1,14 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-interface CustomBoxProps {
+interface IconLableBoxProps {
     imageSrc: string;
     text: string;
     iconSize: number;
     onClick?: () => void; // Optional onClick prop
 }
 
-const CustomBox: React.FC<CustomBoxProps> = ({ imageSrc, text, iconSize, onClick }) => {
+const IconLableBox: React.FC<IconLableBoxProps> = ({ imageSrc, text, iconSize, onClick }) => {
     return (
         <Box
             onClick={onClick}
@@ -49,4 +49,4 @@ const CustomBox: React.FC<CustomBoxProps> = ({ imageSrc, text, iconSize, onClick
     );
 };
 
-export default CustomBox;
+export default IconLableBox;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Typography, Box} from '@mui/material';
-import IconBox from './IconBox'; // Import your IconBox component
+import IconsRow from './IconsRow'; // Import your IconsRow component
 import LoginForm from './LoginForm'; // Import the LoginForm component
 import Footer from './Footer'; // Import the Footer component
 import { useTranslation } from 'react-i18next';
@@ -61,7 +61,7 @@ const Login: React.FC = () => {
                         fullWidth: true,
                     }}
                 />
-                <IconBox
+                <IconsRow
                     sx={{mt: 3}}
                 />
             </Box>
