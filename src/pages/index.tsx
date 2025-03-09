@@ -1,12 +1,12 @@
 // src/pages/index.tsx
 import React from 'react';
-import Login from '../components/Login';
+import LoginPage from '../components/LoginPage';
 import '../translation'; // Import the translation setup
 
 const HomePage: React.FC = () => {
     return (
         <div>
-            <Login />
+            <LoginPage />
         </div>
     );
 };
